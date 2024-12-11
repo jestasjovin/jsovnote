@@ -108,7 +108,7 @@ async function getDirectoryContents(dirPath) {
     });
 
     createNewFileButton.style.display = "inline-block";
-
+   
     backButton.style.display =
       directoryStack.length > 0 ? "inline-block" : "none";
 
@@ -157,6 +157,8 @@ async function loadFile(filePath) {
     const fileHeadName = document.createElement("h3");
     fileNameTitle.textContent = `${jsonData.fileName}`;
     fileNameTitle.appendChild(fileHeadName);
+    // fileNameTitle.classList.toggle("text-yellow-500");
+    // fileNameTitle.classList.add("text-yellow-500");
 
     renderBlocks();
   } catch (err) {
@@ -297,7 +299,7 @@ async function runCode(block, index) {
       resultDiv.textContent = ` ${result.error}`;
       console.error("Error from server:", result.error);
     } else {
-      resultDiv.style.color = "black"; 
+      resultDiv.style.color = "white"; 
       resultDiv.textContent = ` ${result.result}`;
       console.log("Server result:", result.result); 
     }
@@ -379,7 +381,7 @@ async function runCode3(block, index) {
       resultDiv.textContent = ` ${result.error}`;
       console.error("Error from server:", result.error);
     } else {
-      resultDiv.style.color = "black"; 
+      resultDiv.style.color = "white"; 
       resultDiv.textContent = ` ${result.result}`;
       console.log("Server result:", result.result); 
     }
