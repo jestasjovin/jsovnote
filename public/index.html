@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href=”./output.css” rel=”stylesheet”>
     <link href="./styles.css" rel="stylesheet" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
     <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
@@ -18,7 +19,7 @@
     <div>
       <!-- Header -->
       <header class="header">
-        <p class=" font-roboto ">jsovnote</p>
+        <p class="font-roboto">jsovnote</p>
         <div>
           <button id="autosave-toggle">Disable Auto-Save</button>
 
@@ -38,7 +39,6 @@
 
       <div class="mainbox">
         <div class="sidebar">
-         
           <h3 class="font-roboto">Recently Visited Files</h3>
 
           <div id="recent-files" class="recentitems"></div>
@@ -51,10 +51,13 @@
           </div>
 
           <div>
+            <!-- <div id="markdown-output"></div> -->
             <p class="">Your local files</p>
 
             <div id="folders"></div>
             <div id="files"></div>
+            <!-- <div id="markdown-output"></div> -->
+
           </div>
 
           <div class="codes">
@@ -75,5 +78,11 @@
       </div>
     </div>
     <script type="module" src="app.js"></script>
+    <!-- <script type="module">
+      import { marked } from 'https://cdn.jsdelivr.net/npm/marked@4.0.12/lib/marked.esm.js';
+      const htmlContent = marked('# Markdown content');
+      document.getElementById('markdown-output').innerHTML = htmlContent;
+    </script> -->
+
   </body>
 </html>

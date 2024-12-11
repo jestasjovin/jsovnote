@@ -21,7 +21,7 @@ const limiter = rateLimit({
   max: 100,
   message: "Too many requests from this IP, please try again after 15 minutes",
 });
-// app.use(limiter);
+app.use(limiter);
 
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));

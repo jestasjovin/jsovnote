@@ -1,4 +1,5 @@
-
+// import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+// import { marked } from 'https://cdn.jsdelivr.net/npm/marked@4.0.12/lib/marked.esm.js';
 let selectedFile = null;
 // let currentPath = "/home"; 
 let currentPath = "/home"; 
@@ -87,7 +88,7 @@ async function getDirectoryContents(dirPath) {
     });
 
     const data = await response.json();
-    console.log("Directory contents:", data);
+    // console.log("Directory contents:", data);
 
     foldersDiv.innerHTML = "";
     filesDiv.innerHTML = "";
@@ -259,6 +260,10 @@ function renderBlocks() {
 async function runCode(block, index) {
   try {
     if (block.type === "comment") {
+    const htmlContent = marked('# Marked in the browser\n\nRendered by **marked**.') //marked(block.code);
+    console.log(htmlContent);
+    
+    blocksContainer.innerHTML = htmlContent;
       return;
     }
     console.log(block);
