@@ -3,7 +3,7 @@
 installation
 
 ```bash
-git clone
+git clone https://github.com/jestasjovin/jsovnote.git
 ```
 
 ```bash
