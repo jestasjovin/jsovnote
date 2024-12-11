@@ -9,12 +9,16 @@ git clone https://github.com/jestasjovin/jsovnote.git
 ```bash
 npm i
 ```
+
 running code
+
 ```bash
 npm run dev
 ```
 
 open browser at http://localhost:3344/
+
+![Initial bare minimum](http://localhost:3000/assets/image1.png)
 
 ---
 
@@ -93,3 +97,9 @@ call it .bravin ....with permission ...run it makes an app
 ===export as code....as an app file not built, ...module to existing apps
 
 ===see visually your app...conected relationships
+
+ <h3  class="font-roboto">Your custom text here</h3>
+          <p class="title_white">Templates to read and modify</p>
+          <p class="title_white">Documentation</p>
+          <p class="title_white">Supported stacks</p>
+          
