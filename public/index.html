@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsovnote</title>
+    <style>
+      body {
+        background-color: #002e3b;
+      }
+
+      .bodyy {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-self: center;
+      }
+
+      p {
+        color: #f4f4f4;
+      }
+
+      #directory {
+        margin-bottom: 20px;
+      }
+      #directory button {
+        margin: 5px;
+      }
+      #folders {
+        margin-left: 20px;
+      }
+      #files {
+        margin-left: 20px;
+      }
+
+      .headerFileNameTitle {
+        margin: 20px;
+        font-size: 30px;
+        color: #f4f4f4;
+      }
+      textarea {
+        width: 100%;
+        display: none;
+        background-color: #002e3b;
+
+        /* height: 400px; */
+      }
+      .block {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #002e3b;
+        margin-bottom: 5px;
+        width: 90%;
+        margin-left: 4%;
+        min-height: 90px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 16px;
+        background-color: #002e3b;
+      }
+      .block:focus {
+        outline: none;
+      }
+      .editable {
+        margin-top: 5px;
+        border: 1px solid #002e3b;
+        background-color: #002e3b;
+        /* font-size: 16px; */
+        color: #f4f4f4;
+        width: 100%;
+        min-height: 100px;
+        resize: vertical;
+      }
+      #updated-message {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #3df843;
+        color: white;
+        padding: 5px;
+        border-radius: 35px;
+        font-size: 8px;
+        display: none;
+      }
+      #autosave-toggle {
+        margin-bottom: 20px;
+      }
+
+      /* Button to show/hide divs */
+      #show-modal-btn {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Modal Style */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        width: 300px;
+        height: 200px;
+      }
+
+      /* Close Button */
+      .close-btn {
+        background-color: red;
+        color: white;
+        padding: 5px;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .header {
+        /* height: 30px; */
+        background-color: #01212b;
+        padding-left: 5px;
+        padding-right: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+      }
+      .mainbox {
+        height: 100%;
+        width: 100%;
+        /* background-color: #dda50c; */
+        display: flex;
+        flex-direction: row;
+      }
+      .sidebar {
+        height: 100%;
+        width: 240px;
+        /* background-color: #f1f1f1; */
+        padding: 8px;
+      }
+      .mainview {
+        height: 100%;
+        width: 80%;
+        /* width: calc(80%-240px); */
+        margin-top: 10px;
+        background-color: #01212b;
+        border-radius: 8px;
+        padding: 1%;
+        padding-bottom: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+      }
+
+      .codes {
+        height: 100%;
+        width: 100%;
+        /* width: calc(80%-240px); */
+        /* background-color: #75b400; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: center; */
+        /* align-content: center;  */
+      }
+
+      .recentitems {
+        margin-top: 3px;
+      }
+      .title_white {
+        color: #f4f4f4;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bodyy">
+      <!-- Header -->
+      <header class="header">
+        <p class="title_white">jsovnote</p>
+        <div>
+          <button id="autosave-toggle">Disable Auto-Save</button>
+
+          <button id="choose-directory" style="display: none">
+            Choose Directory
+          </button>
+          <button id="" >
+            Import project
+          </button>
+          <button id="create-new-file-button" style="display: none">
+            Create New JSON File
+          </button>
+        </div>
+      </header>
+
+      <div class="mainbox">
+        <div class="sidebar">
+          <p class="title_white">Templates to read and modify</p>
+          <p class="title_white">Documentation</p>
+          <p class="title_white">Supported stacks</p>
+          <p class="title_white">Recently Visited Files</p>
+
+          <div id="recent-files" class="recentitems"></div>
+
+          <div id="updated-message"></div>
+        </div>
+        <div class="mainview">
+          <div id="directory">
+            <button id="back-button" style="display: none">Go Back</button>
+          </div>
+
+          <div>
+            <p class="">Your local files</p>
+
+            <div id="folders"></div>
+            <div id="files"></div>
+          </div>
+
+          <div class="codes">
+            <!-- behave like go button and blocs..dissapear after changing  -->
+            <div>
+              <div id="fileNameTitle" class="headerFileNameTitle"></div>
+              <button id="create-code-block">Create Code Block</button>
+              <button id="create-comment-block">Create Comment Block</button>
+
+              <button id="manual-save-button">Save Manually</button>
+              <button id="run-all-blocks">Run All Blocks</button>
+            </div>
+            <div id="blocks-container"></div>
+          </div>
+
+          <textarea id="file-content"></textarea>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
